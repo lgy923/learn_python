@@ -255,3 +255,111 @@ if __name__ == '__main__':
     client_send(server_address)
 ```
 
+
+
+<h2>4、实现一个聊天群组，多个客户端可同时发送消息，一个客户端发送的消息会广播给其他所有聊天群组成员。</h2>
+
+**服务端**
+
+```python
+import socket
+from threading import Thread  # 导入threading模块
+
+conn_list = []
+
+
+def server_recv(conn, addr):
+    while True:  # 重复接受消息
+
+        try:
+            data_recv = conn.recv(65535)
+
+        except Exception:
+            conn_list.remove(conn)
+
+            print("用户{}已从服务端断开连接".format(addr))
+            break
+
+        for conn_send in conn_list:
+            conn_send.send(data_recv)
+
+
+def server_handle(address):
+
+    server = socket.socket()
+    server.bind(address)
+    server.listen(3)
+
+    print("服务端已开启...")
+
+    while True:
+
+        conn, addr = server.accept()
+        conn_list.append(conn)  # 把连接进来的客户端地址插入列表中
+
+        print("用户{}已连接至服务端".format(addr))
+
+        handle = Thread(target=server_recv, args=(conn, addr))  # 创建线程
+
+        handle.start()  # 开启线程
+
+
+if __name__ == '__main__':
+
+    server_address = ('127.0.0.1', 55666)
+    server_handle(server_address)
+```
+
+**客户端**
+
+```python
+import socket
+from threading import Thread
+
+
+def client_send(client):
+
+    while True:
+        input_msg = input(">>>")
+
+        if input_msg == "exit":  # 用户输入exit则退出聊天
+            break
+
+        client.send(input_msg.encode())
+
+    client.close()
+
+
+def client_recv(client):
+    while True:
+        try:
+            data_recv = client.recv(65535)
+        except Exception:
+            print("断开服务器成功")
+            break
+
+        print(data_recv.decode())
+
+
+def client_main(address):
+    client = socket.socket()
+    client.connect(address)
+
+    t1 = Thread(target=client_send, args=(client,))
+    t2 = Thread(target=client_recv, args=(client,))
+
+    t1.start()
+    t2.start()
+
+    t1.join()
+    t2.join()
+
+    client.close()
+
+
+if __name__ == '__main__':
+    server_address = ('127.0.0.1', 55666)
+    client_main(server_address)
+```
+
+以上实现了一个基本的多人聊天系统
