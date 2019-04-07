@@ -112,3 +112,146 @@ while True:  # 重复发送消息
 client.close()
 ```
 
+为了代码模块化，功能结构更清晰，我们把功能模块用函数来表示。
+
+**服务端_函数表示**
+
+```python
+import socket
+
+
+def server_recv(conn, addr):  # 接收消息函数
+    while True:  # 重复接受消息
+        data_recv = conn.recv(65535)
+
+        if not data_recv.decode():  # 如果客户端发送的消息为空，则不再接受消息
+            print("{}已连接断开连接...".format(addr))  # 提示客户端已断开连接
+            break
+
+        print(data_recv.decode())
+
+
+def server_handle(address):  # 主题配置，监听和连接客户端
+    server = socket.socket()
+    server.bind(address)
+    server.listen(5)
+
+    conn, addr = server.accept()
+    print("{}已连接至服务端...".format(addr))  # 提示客户端已连接
+
+    server_recv(conn, addr)  # 调用接收消息的函数
+
+    server.close()
+
+
+if __name__ == '__main__':
+    server_address = ('127.0.0.1', 55556)
+    server_handle(server_address)
+```
+
+**客户端_函数表示**
+
+```python
+# -*- coding:utf-8 -*-
+
+import socket
+
+
+def client_send(address):
+    client = socket.socket()
+    client.connect(address)
+
+    while True:  # 重复发送消息
+        input_msg = input("请输入消息：")
+
+        client.send(input_msg.encode())
+
+        if not input_msg:  # 如果输入的内容为空，则退出通信
+            break
+
+    client.close()
+
+
+if __name__ == '__main__':
+    server_address = ('127.0.0.1', 55556)
+    client_send(server_address)
+```
+
+
+
+<h2>3、socket和<a href="https://github.com/lgy923/learn_python/blob/master/%E5%A4%9A%E8%BF%9B%E7%A8%8B.md">多线程</a>实现多个客户端可以同时向服务端发送消息</h2>
+
+**服务端**
+
+```python
+# -*- coding:utf-8 -*-
+
+import socket
+from threading import Thread  # 导入threading模块
+
+
+def server_recv(conn, addr):
+    while True:  # 重复接受消息
+        data_recv = conn.recv(65535)
+
+        if not data_recv:  # 当收到的消息为空时，表示客户端断开连接
+            print("用户{}已断开连接".format(addr))
+            break
+
+        print(data_recv.decode())
+
+
+def server_handle(address):
+    
+    server = socket.socket()
+    server.bind(address)
+    server.listen(3)
+
+    while True:
+
+        conn, addr = server.accept()
+        print("用户{}已连接至服务端".format(addr))
+
+        handle = Thread(target=server_recv, args=(conn, addr))  # 创建线程
+
+        handle.start()  # 开启线程
+
+        conn.close()
+
+
+if __name__ == '__main__':
+    server_address = ('127.0.0.1', 55666)
+    server_handle(server_address)
+```
+
+server_handle函数中while循环中的语句，当执行到conn, addr = server.accept()部分时会发生阻塞，即除非有客户端连接进来，才会往下执行，如果一直客户端连接进来，则不会执行接收消息的语句。此时，就可以创建一个线程，使用**多线程**来解决这个问题。
+
+代码都是从上往下顺序执行的。由于阻塞，会影响到后面代码得执行。所以多进程可以实现多个程序块“同时执行”，即便是conn, addr = server.accept()阻塞暂停了程序，但是后面创建的进程所指向的程序块还是可以执行。
+
+**客户端**
+
+```python
+# -*- coding:utf-8 -*-
+
+import socket
+
+
+def client_send(address):
+    client = socket.socket()
+    client.connect(address)
+
+    while True:
+        input_msg = input(">>>")
+        client.send(input_msg.encode())
+
+        if not input_msg:
+            break
+    
+    client.close()
+    
+
+if __name__ == '__main__':
+    server_address = ('127.0.0.1', 55666)
+    client_send(server_address)
+```
+
