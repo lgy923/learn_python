@@ -1,3 +1,5 @@
+参考链接：https://juejin.im/post/5ae55861f265da0ba062ec71
+
 <h3>基本命令</h3>
 
 ```mysql
@@ -25,6 +27,8 @@ show tables;
 
 **注意**：数据库和基本表建议使用 **``**号(不是引号)括起来。  
 
+
+
 <h3>基本表操作</h3>
 
 ```mysql
@@ -49,7 +53,7 @@ rename table tb1 to tb2;
 alter table tb1 add hobby varchar(20);
 ```
 
-注释：
+**注释**：
 
 1、允许**null**值，则说明在插入数据的时候允许不给出该列的值；而**not null**则表示插入或者更新该列数据时必须给出该列的值。
 
@@ -87,3 +91,20 @@ flush privileges;
 ```
 
 **注意**：授权的IP地址要和创建用户时的IP一致。
+
+
+
+<h3>表数据操作</h3>
+
+```mysql
+select stu_name from tb1 where age=20;  -- 查看年龄为20的人员姓名
+select distinct stu_name from tb1;  -- 为查出的stu_name列信息去重  
+select stu_name from tb1 where age=20 limit 5;  -- 只查看5个age为20的姓名
+```
+
+过滤条件操作符有：
+
+```
+=，<>，!=，<=，>，>=，between and，is null。
+```
+
