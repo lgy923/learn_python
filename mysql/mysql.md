@@ -162,3 +162,8 @@ select * from t1 left join t2 on ti.i1=t2.i2;  -- t1为主表匹配，没有匹�
 
 
 数据库五种关系代数运算
+
+```
+
+```
+
