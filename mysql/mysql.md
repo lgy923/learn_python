@@ -2,37 +2,29 @@
 
 <a href="https://github.com/lgy923/learn_python/blob/master/mysql/mysql.md#基本命令">一、基本命令</a>
 
-<a href="https://github.com/lgy923/learn_python/blob/master/mysql/mysql.md#基本表操作">二、数据表操作</a>
+<a href="https://github.com/lgy923/learn_python/blob/master/mysql/mysql.md#数据表操作">二、数据表操作</a>
 
-　　<a href="https://github.com/lgy923/learn_python/blob/master/mysql/mysql.md#术语概念">术语概念</a>
+　　<a href="https://github.com/lgy923/learn_python/blob/master/mysql/mysql.md#术语概念">(一)术语概念</a>
 
-　　<a href="https://github.com/lgy923/learn_python/blob/master/mysql/mysql.md#表结构操作">表结构操作</a>
+　　<a href="https://github.com/lgy923/learn_python/blob/master/mysql/mysql.md#表结构操作">(二)表结构操作</a>
 
-　　<a href="https://github.com/lgy923/learn_python/blob/master/mysql/mysql.md#表数据操作">表数据操作</a>
+　　<a href="https://github.com/lgy923/learn_python/blob/master/mysql/mysql.md#表数据操作">(三)表数据操作</a>
 
-　　　　<a href="https://github.com/lgy923/learn_python/blob/master/mysql/mysql.md#增加数据">增加(插入数据)</a>
+　　　　<a href="https://github.com/lgy923/learn_python/blob/master/mysql/mysql.md#增加数据">1、增加(插入数据)</a>
 
-　　　　<a href="https://github.com/lgy923/learn_python/blob/master/mysql/mysql.md#删除数据">删除数据</a>
+　　　　<a href="https://github.com/lgy923/learn_python/blob/master/mysql/mysql.md#删除数据">2、删除数据</a>
 
-　　　　<a href="https://github.com/lgy923/learn_python/blob/master/mysql/mysql.md#修改数据">修改数据</a>
+　　　　<a href="https://github.com/lgy923/learn_python/blob/master/mysql/mysql.md#修改数据">3、修改数据</a>
 
-　　　　<a href="https://github.com/lgy923/learn_python/blob/master/mysql/mysql.md#查询数据">查询数据(重难点)</a>
+　　　　<a href="https://github.com/lgy923/learn_python/blob/master/mysql/mysql.md#查询数据">4、查询数据(重难点)</a>
 
-　　<a href="https://github.com/lgy923/learn_python/blob/master/mysql/mysql.md#过滤条件操作符">过滤条件操作符</a>
+　　<a href="https://github.com/lgy923/learn_python/blob/master/mysql/mysql.md#过滤条件操作符">(四)过滤条件操作符</a>
 
 <a href="https://github.com/lgy923/learn_python/blob/master/mysql/mysql.md#用户权限">三、用户权限</a>
 
 <a href="https://github.com/lgy923/learn_python/blob/master/mysql/mysql.md#数据库五种关系代数运算">四、数据库五种关系代数运算</a>
 
 
-
-```
-https://github.com/lgy923/learn_python/blob/master/mysql/mysql.md
-```
-
-
-
-参考链接：https://juejin.im/post/5ae55861f265da0ba062ec71
 
 <h2>基本命令</h2>
 
@@ -112,13 +104,13 @@ create table `tb1`(  -- tb1数据表名称
     id_out int,
     primary key(id),  -- 设置id属性为主键
     foreign key (id_out) references `Persons`(id_out)
-)engine=InnoDB charset=utf8;
+)engine=InnoDB charset=utf8;  -- 设置引擎（engine）和编码格式（charset）
 
 -- 重命名表名
-rename table tb1 to tb2;
+rename table tb1 to tb2;  -- 把tb1表重命名为tb2
 
 -- 基本表新增列
-alter table tb1 add hobby varchar(20);
+alter table tb1 add hobby varchar(20);  -- 在tb1表中新增`hobby`属性
 ```
 
 
@@ -128,9 +120,8 @@ alter table tb1 add hobby varchar(20);
 <h5>增加数据</h5>
 
 ```mysql
-insert into tb1 (stu_name,age,gender,telephone) values ('Culun',25,'male','213213131');
-
-insert into tb1 values (16,'Culun',25,'male','213213131','basketball');
+insert into tb1 (stu_name,age,gender,telephone) values ('Culun',25,'male','213213131');  -- 选择具体属性插入对应数据
+insert into tb1 values (16,'Culun',25,'male','213213131','basketball');  -- 此种插入数据的方法必须逐个插入所有属性的数据
 ```
 
 
@@ -190,7 +181,7 @@ create user lgy1@'%' identified by '123456';
 
 -- 删除用户
 drop user lgy2@'%';
-drop user lgy2@ 127.0.0.1；
+drop user lgy2@127.0.0.1；
 
 -- 用户授权
 grant all privileges on *.* to lgy1@'%';  -- 授予用户lgy1所有数据库的所有权限
@@ -210,4 +201,10 @@ flush privileges;
 ```
 
 ```
+
+
+
+
+
+MySQL基础命令可参考链接：https://juejin.im/post/5ae55861f265da0ba062ec71
 
