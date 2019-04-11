@@ -4,6 +4,26 @@
 
 <a href="https://github.com/lgy923/learn_python/blob/master/mysql/mysql.md#基本表操作">二、数据表操作</a>
 
+　　<a href="https://github.com/lgy923/learn_python/blob/master/mysql/mysql.md#术语概念">术语概念</a>
+
+　　<a href="https://github.com/lgy923/learn_python/blob/master/mysql/mysql.md#表结构操作">表结构操作</a>
+
+　　<a href="https://github.com/lgy923/learn_python/blob/master/mysql/mysql.md#表数据操作">表数据操作</a>
+
+　　　　<a href="https://github.com/lgy923/learn_python/blob/master/mysql/mysql.md#增加数据">增加(插入数据)</a>
+
+　　　　<a href="https://github.com/lgy923/learn_python/blob/master/mysql/mysql.md#删除数据">删除数据</a>
+
+　　　　<a href="https://github.com/lgy923/learn_python/blob/master/mysql/mysql.md#修改数据">修改数据</a>
+
+　　　　<a href="https://github.com/lgy923/learn_python/blob/master/mysql/mysql.md#查询数据">查询数据(重难点)</a>
+
+　　<a href="https://github.com/lgy923/learn_python/blob/master/mysql/mysql.md#过滤条件操作符">过滤条件操作符</a>
+
+<a href="https://github.com/lgy923/learn_python/blob/master/mysql/mysql.md#用户权限">三、用户权限</a>
+
+<a href="https://github.com/lgy923/learn_python/blob/master/mysql/mysql.md#数据库五种关系代数运算">四、数据库五种关系代数运算</a>
+
 
 
 ```
@@ -67,9 +87,7 @@ select * from user_user;  -- 查看user_user表
 
 4、**primary key**用于指定主键。主键可以指定一列数据，也可以由多列数据组成。如，primary key(cust_id,cust_name);主键的特性：i 不可以为空  ii 不能重复。
 
-5、外键
-
-6、**engine**用于指定引擎类型，常见的引擎类型：
+5、**engine**用于指定引擎类型，常见的引擎类型：
 
 　　i、InnoDB，是一个可靠的事物处理引擎，但是不支持全文本搜索。
 
@@ -103,15 +121,11 @@ rename table tb1 to tb2;
 alter table tb1 add hobby varchar(20);
 ```
 
-**注释**：
-
-
-
 
 
 <h3>表数据操作</h3>
 
-**增加（插入）语句**
+<h5>增加数据</h5>
 
 ```mysql
 insert into tb1 (stu_name,age,gender,telephone) values ('Culun',25,'male','213213131');
@@ -121,7 +135,7 @@ insert into tb1 values (16,'Culun',25,'male','213213131','basketball');
 
 
 
-**删除语句**
+<h5>删除数据</h5>
 
 ```mysql
 delete from tb1 where id is null;  -- 删除tb1表中id属性为空的元组
@@ -130,7 +144,7 @@ delete from tb1 where id = 15;  -- 删除tb1表中id=15的元组
 
 
 
-**修改（更新）语句**
+<h5>修改数据</h5>
 
 ```mysql
 update tb1 set age = 21 where id = 14;  -- 修改tb1表中id=14的age为21
@@ -138,7 +152,7 @@ update tb1 set age = 21 where id = 14;  -- 修改tb1表中id=14的age为21
 
 
 
-**查询语句**
+<h5>查询数据</h5>
 
 ```mysql
 select stu_name from tb1 where age=20;  -- 查看年龄为20的人员姓名
@@ -158,7 +172,9 @@ select * from t1 join t2 on ti.i1=t2.i2;  -- 合并表的时候就筛选
 select * from t1 left join t2 on ti.i1=t2.i2;  -- t1为主表匹配，没有匹配到的null
 ```
 
-**过滤条件操作符有**：
+
+
+<h3>过滤条件操作符</h3>
 
 ```
 <=>，=，<，!=，<=，>，>=，between and，is null。
@@ -189,7 +205,7 @@ flush privileges;
 
 
 
-**数据库五种关系代数运算**：
+<h2>数据库五种关系代数运算</h2>
 
 ```
 
