@@ -54,10 +54,10 @@ show tables;
 desc tb1;
 
 -- 删除数据表
-drop table tb1;  -- 删除数据表
+drop table tb1;
 
--- 清空表内容
-delete from tb1;  -- 清空tb1表中内容
+-- 清空表
+delete from tb1;  -- 仅清空tb1表中内容
 truncate table tb1;  -- 清空tb1表中内容（与上者略有不同，速度快，自增回到原点）
 
 -- 查看数据表
@@ -77,9 +77,13 @@ select * from user_user;  -- 查看user_user表
 
 3、**default**表示该列的默认值。在插入行数据时，若没有给出该列的值就会使用其指定的默认值。
 
-4、**primary key**用于指定主键。主键可以指定一列数据，也可以由多列数据组成。如，primary key(cust_id,cust_name);主键的特性：i 不可以为空  ii 不能重复。
+4、**primary key**用于指定主键。主键可以指定一列数据，也可以由多列数据组成。如，primary key(cust_id,cust_name)；
 
-5、**engine**用于指定引擎类型，常见的引擎类型：
+　　主键的特性：i 不可以为空  ii 不能重复。
+
+5、**foreign key**用于两张表建立约束，可一对多。如，foreign key (id_out) references `Persons`(id_out)；
+
+6、**engine**用于指定引擎类型，常见的引擎类型：
 
 　　i、InnoDB，是一个可靠的事物处理引擎，但是不支持全文本搜索。
 
@@ -87,7 +91,7 @@ select * from user_user;  -- 查看user_user表
 
 　　iii、MEMORY在功能上等同于MyISAM，但由于数据存储在内存中，速度很快（特别适合于临时表）。
 
-　　参考：https://segmentfault.com/a/1190000012588602
+　　MySQL引擎参考：https://segmentfault.com/a/1190000012588602
 
 
 
@@ -110,7 +114,26 @@ create table `tb1`(  -- tb1数据表名称
 rename table tb1 to tb2;  -- 把tb1表重命名为tb2
 
 -- 基本表新增列
-alter table tb1 add hobby varchar(20);  -- 在tb1表中新增`hobby`属性
+alter table tb1 add hobby varchar(20);  -- 在tb1表中新增hobby属性
+alter table tb1 drop hobby varchar(20);  -- 删除tb1表中删除hobby属性
+
+-- 添加主键
+alter table tb1 add primary key(id);  -- 添加tb1表中id列为主键
+
+-- 删除主键
+alter table tb1 drop primary key(id);  -- 删除tb1表中id列的主键
+
+-- 添加外键
+alter table tb1 add constraint fk1 foreign key student(depart_id) references department(dep_id);  -- 添加名为fk1的外键，表student的depart_id列和department的dep_id列 
+
+-- 删除外键
+alter table student drop foreign key fk1;  -- 从student表删除外键fk1
+
+-- 修改默认值
+alter table student alter stu_weight set default 75;  -- 修改表student中stu_weight列的默认值为75
+
+-- 删除默认值
+alter table student alter alter stu_weight drop default;  -- 删除student表中stu_weight列的默认值
 ```
 
 
@@ -150,17 +173,26 @@ select stu_name from tb1 where age=20;  -- 查看年龄为20的人员姓名
 select distinct stu_name from tb1;  -- 为查出的stu_name列信息去重  
 select stu_name from tb1 where age=20 limit 5;  -- 只查看5个age为20的姓名
 
-子查询
+-- 子查询
 select * from tb1 where age=(select max(age) from tb1);  -- 查看年纪最大的人所有信息
 
 select class,count(*) from tb1 group by class;  -- 查看各个班的人数
 select class,count(*) from tb1 group by class having class='b';
 
-联表查询
+-- 联表查询
 select * from t1 join t2 where t1.i1=t2.i2;  -- 先进行表拼接，然后再筛选
 select * from t1 join t2 on ti.i1=t2.i2;  -- 合并表的时候就筛选
 
 select * from t1 left join t2 on ti.i1=t2.i2;  -- t1为主表匹配，没有匹配到的null
+
+-- 排序查看
+select * from employee order by salary desc;  -- 以salary列降序查看employee表所有数据
+select * from employee order by salary asc;  -- 以salary升序查看employee表所有数据
+
+-- ifnull用法
+select ifnull(null, 'null')
+
+select email from person group by email having count(*)
 ```
 
 
