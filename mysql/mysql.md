@@ -133,7 +133,7 @@ alter table student drop foreign key fk1;  -- 从student表删除外键fk1
 alter table student alter stu_weight set default 75;  -- 修改表student中stu_weight列的默认值为75
 
 -- 删除默认值
-alter table student alter alter stu_weight drop default;  -- 删除student表中stu_weight列的默认值
+alter table student alter stu_weight drop default;  -- 删除student表中stu_weight列的默认值
 ```
 
 

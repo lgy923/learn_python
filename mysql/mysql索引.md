@@ -133,7 +133,7 @@ ALTER TABLE `student` DROP PRIMARY KEY;
 
 　　你可以使用**SHOW INDEX**命令来列出相关的索引信息。可以通过添加 **\G** 来格式化输出信息。
 
-```
+```mysql
 SHOW INDEX FROM `student`; \G
 ```
 
