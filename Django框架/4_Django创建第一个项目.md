@@ -1,4 +1,4 @@
-### 创建应用
+### [创建应用](https://github.com/lgy923/learn_python/blob/master/Django%E6%A1%86%E6%9E%B6/3_Django%E5%88%9B%E5%BB%BA%E5%BA%94%E7%94%A8.md#%E5%88%9B%E5%BB%BA%E5%BA%94%E7%94%A8)
 
 ### 进入myblog项目下的blog应用目录中
 
@@ -25,3 +25,13 @@
 #### 在浏览器中输入127.0.0.1:8000
 
 ![](images/3.png)
+
+
+
+第二种URL配置
+
+注意事项：
+
+根urls.py针对APP配置的URL名称，是该APP所有URL的总路径
+
+配置URL时注意正则表达式结尾符号$和/

@@ -18,9 +18,8 @@ URL配置文件，Django项目中所有地址（页面）都需要我们自己�
 
 -   BASE_DIR：指的项目的根目录
 -   DEBUG：开启，会把异常抛出给用户
--   ALLOWED_HOSTS = ['localhost']
--   只允许用户通过localhost访问
--   INSTALLED_APPS
+-   ALLOWED_HOSTS = ['localhost']，只允许用户通过localhost访问
+-   INSTALLED_APPS：安装的应用
 -   MIDDLEWARE:django自带的工具集
 -   TEMPLATES：模板
 -   DATABASES：数据库配置
@@ -29,6 +28,6 @@ URL配置文件，Django项目中所有地址（页面）都需要我们自己�
 
 
 
-__init__.py
+### __init__.py
 
 声明模块的文件,内容默认为空
