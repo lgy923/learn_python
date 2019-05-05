@@ -8,7 +8,7 @@
 
 #### 添加应用名到settings.py中的INSTALLED_APPS里（应用名不可和python内置模块相同）
 
-![](images/4.png)
+![](../images/4.png)
 
 ### 应用目录结构介绍
 

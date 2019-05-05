@@ -10,19 +10,19 @@ HTML文件
 
 在应用下新建一个urls.py文件，把myblog中的urls.py内容复制过去，删掉不需要的内容
 
-![](images/11.png)
+![](../images/11.png)
 
 在APP的根目录下创建名叫Templates的目录
 
-![](images/6.png)
+![](../images/6.png)
 
 在该目录下创建HTML文件
 
-![](images/7.png)
+![](../images/7.png)
 
 在views.py中返回一个render()
 
-![](images/8.png)
+![](../images/8.png)
 
 
 
