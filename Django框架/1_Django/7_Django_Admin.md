@@ -18,7 +18,7 @@ Django提供了许多针对Admin的定制功能
 
 **localhost:8000/admin** Admin入口
 
-修改**settings.py**中**LANGUAGE_CODE = 'zh_Hans'**
+修改**settings.py**中**LANGUAGE_CODE = 'zh-hans'**
 
 #### 配置应用
 

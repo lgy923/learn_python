@@ -40,7 +40,7 @@ attr = CharField(max_length=64)
 
 Django会自动在**app/migrations/**目录下生成移植文件
 
-执行**python mange.py sqlmigrate 应用名 文件id** 查看sql语句
+执行**python manage.py sqlmigrate 应用名 文件id** 查看sql语句
 
 **默认sqlite3**的数据库在项目根目录下**db.sqlite3**
 
@@ -50,9 +50,9 @@ Django会自动在**app/migrations/**目录下生成移植文件
 
 views.py中import models
 
-article = models.Article.bojects.get(pk=1)
+article = models.Article.objects.get(pk=1)
 
-render(request,page,{'article': article})
+render(request,*page*,{'article': article})
 
 前端步骤
 

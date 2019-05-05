@@ -22,7 +22,7 @@
 
 **python manage.py runserver**
 
-#### 在浏览器中输入127.0.0.1:8000
+#### 在浏览器中输入127.0.0.1:8000/index
 
 ![](images/3.png)
 

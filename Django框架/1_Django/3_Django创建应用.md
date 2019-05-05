@@ -60,3 +60,7 @@ django提供了自动化测试功能
 代码逻辑处理的主要地点
 
 项目中大部分代码在这里编写
+
+
+
+在settings中添加app——>编辑blog.views——>配置urls
