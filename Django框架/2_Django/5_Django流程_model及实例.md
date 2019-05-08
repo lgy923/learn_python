@@ -53,3 +53,16 @@ render(request,*page*,{'article': article})
 清空数据库
 
 **python manage.py flush**
+
+**views.py**文件
+
+```python
+def userinfo(request):
+    if request.method == "POST":
+        user_name == request.POST.get("username", None)
+        # user_name为一个变量，来存储表单提交是数据
+        # username为html中input标签name属性的值（name="username"）
+        sex == request.POST.get("gender", None)
+        email_address == request.POST.get("email", None)
+```
+
