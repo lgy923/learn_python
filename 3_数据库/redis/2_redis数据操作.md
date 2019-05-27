@@ -1,6 +1,5 @@
-## 数据操作
+## String
 
-### String
 1.  string是redis最基本的类型
 2.  最大能存储512MB数据
 3.  string类型是二进制最安全,即可以为任何数据,比如数字,图片,序列化对象等
@@ -27,8 +26,8 @@
 
 
 
+## Hash
 
-### Hash
 1.  hash用于存储对象,对象的格式为键值对
 
 #### 设置对象属性值
@@ -48,7 +47,9 @@
 -   返回对象某个属性的值的字符串长度: **HSTRLEN key field**
 
 
-### list(可以理解为python中的双端队列)
+
+## list
+
 1.  list的元素类型为string
 2.  按照插入顺序排序
 3.  在列表的头部或者尾部添加元素
@@ -70,7 +71,9 @@
 -   返回存储在key中的list的长度: **LLEN key**
 
 
-### Set
+
+## Set
+
 1.  无序集合
 2.  元素为string类型
 3.  元素具有唯一性,不重复
@@ -90,7 +93,7 @@
 
 
 
-### Zset
+## Zset
 
 1.  sorted set,有序集合
 2.  元素为string类型
@@ -107,7 +110,10 @@
 -   返回有序集合key中,score值在min和max之间的元素个数: **ZCOUNT key min max**
 -   返回有序集合key中,元素member的权重score值: **ZSCORE key member**
 
-### 键命令
+
+
+## 键命令
+
 -   查找键,参数支持正则表达式: **KEYS pattern**
 -   判断键是否存在,可同时判断多个key,返回已存在的key的数量: **EXISTS key1 key2**
 -   查看键对应的value的类型: **TYPE key**
@@ -117,7 +123,7 @@
 
 ### 其他操作
 -   选择数据库: **select [0-15]**
--   查看所有键: **keys *** 
+-   查看所有键: <b>keys *</b>
 -   删除所有键: **redis-cli keys "*" | xargs redis-cli del**
 
 
