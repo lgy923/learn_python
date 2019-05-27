@@ -1,33 +1,65 @@
 ## Ubuntu安装Nginx
 
+[一、基于APT源安装](#一、 基于APT源安装)
+
+1.  [通过apt软件包工具安装](#通过apt软件包工具安装)
+2.  [安装好的文件位置](#安装好的文件位置)
+3.  [源码包下载地址](#源码包下载地址)
+
+[二、通过源码包编译安装](#通过源码包编译安装)
+
+1.  [安装gcc g++依赖包](#1、安装gcc g++的依赖库(运行的环境))
+2.  [安装pcre依赖包](#2、安装pcre的依赖库(解析正则表达式))
+3.  [安装zlib依赖包](#3、安装zlib的依赖库(压缩解压))
+4.  [安装openssl依赖包](#4、安装openssl的依赖包(加密传输))
+5.  [安装nginx](#5、安装Nginx)
+    1.  [下载源码包](#下载源码包)
+    2.  [解压](#解压)
+    3.  [进入nginx-1.13.6目录](#进入nginx-1.13.6目录)
+    4.  [配置](#配置)
+    5.  [编译](#编译)
+    6.  [安装](#安装)
+    7.  [启动](#启动)
+    8.  [查看进程](#查看进程)
+6.  [配置软连接](#6、配置软连接(添加到环境变量))
+7.  [*配置开机启动服务](#*7、配置开机启动服务)
+    1.  [编辑脚本](#编辑脚本)
+    2.  [设置服务脚本有执行权限](#设置服务脚本有执行权限)
+    3.  [注册服务](#注册服务)
+8.  [其他命令](#8、其他命令)
+    1.  [启动Nginx](#启动Nginx)
+    2.  [查看运行状态](#查看运行状态)
+    3.  [检查配置文件是否正确](#检查配置文件是否正确)
+    4.  [可以看到编译选项](#可以看到编译选项)
+    5.  [重启Nginx](#重启Nginx)
+    6.  [关闭Nginx](#关闭Nginx)
+    7.  [优雅停止服务](#优雅停止服务)
+
+
+
 ### 一、 基于APT源安装
 
 ```shell
 sudo apt-get install nginx
 ```
 
-安装好的文件位置:
+### 安装好的文件位置
 
 -   /usr/sbin/nginx: 主程序
-
 -   /etc/nginx: 存放配置文件
-
 -   /usr/share/nginx: 存放静态文件
-
 -   /var/log/nginx: 存放日志
+
+### 源码包下载地址
+
+-   官方下载页面：http://nginx.org/en/download.html    https://hg.nginx.org/nginx
+-   官方配置文件详解: http://nginx.org/en/docs/configure.html
+-   pcre库下载: https://sourceforge.net/projects/pcre/files/pcre/
+-   zlib下载: http://www.zlib.net/
+-   openssl下载: https://github.com/openssl/openssl
 
 
 ### 二 、通过源码包编译安装
-
--   官方下载页面：http://nginx.org/en/download.html    https://hg.nginx.org/nginx
-
--   官方配置文件详解: http://nginx.org/en/docs/configure.html
-
--	pcre库下载: https://sourceforge.net/projects/pcre/files/pcre/
-
--	zlib下载: http://www.zlib.net/
-
--	openssl下载: https://github.com/openssl/openssl
 
 
 #### 1、安装gcc g++的依赖库(运行的环境)
@@ -331,7 +363,7 @@ sudo update-rc.d nginx defaults
 
 #### 8、其他命令
 
-##### 启动Nginx: 
+##### 启动Nginx
 
 ```shell
 systemctl start nginx
@@ -339,39 +371,40 @@ systemctl start nginx
 sudo ./usr/local/nginx/sbin/nginx
 ```
 
-##### 查看运行状态: 
+##### 查看运行状态
 
 ```shell
 netstat -ltpn
+
 sudo netstat -apn | grep 80
 ```
 
-##### 检查配置文件是否正确: 
+##### 检查配置文件是否正确
 
 ```shell
 ./usr/local/sbin/nginx -t
 ```
 
-##### 可以看到编译选项: 
+##### 可以看到编译选项
 
 ```shell
 ./usr/local/sbin/nginx -V
 ```
 
 
-##### 重启Nginx: 
+##### 重启Nginx
 
 ```shell
 sudo ./usr/local/sbin/nginx -s reload
 ```
 
-##### 关闭Nginx: 
+##### 关闭Nginx
 
 ```shell
 sudo ./usr/local/sbin/nginx -s stop
 ```
 
-##### 优雅停止服务: 
+##### 优雅停止服务
 
 如果有客户端在传输数据,会等待客户端传输完毕再停止服务
 

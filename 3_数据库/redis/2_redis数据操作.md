@@ -22,7 +22,7 @@
 
 #### 其他
 -   追加值: **APPEND key value**
--   获取值长度: **SERLEN key**
+-   获取值长度: **STRLEN key**
 
 
 
@@ -105,7 +105,7 @@
 -   添加元素: **ZADD key score1 member1 score2 member2** 
 
 #### 获取值
--   返回指定索引范围内的元素(可同时获取权重): **ZRANGE key start stop [WITHSCORE]**
+-   返回指定索引范围内的元素(可同时获取权重): **ZRANGE key start stop [WITHSCORES]**
 -   返回元素个数: **ZCARD key**
 -   返回有序集合key中,score值在min和max之间的元素个数: **ZCOUNT key min max**
 -   返回有序集合key中,元素member的权重score值: **ZSCORE key member**
