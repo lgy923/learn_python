@@ -16,7 +16,7 @@ sudo apt-get install nginx
 ### 源码包下载地址
 
 -   Nginx下载链接1：http://nginx.org/en/download.html 
--   Nginx下载链接2https://hg.nginx.org/nginx
+-   Nginx下载链接2：https://hg.nginx.org/nginx
 -   官方配置文件详解: http://nginx.org/en/docs/configure.html
 -   pcre库下载: https://sourceforge.net/projects/pcre/files/pcre/
 -   zlib下载: http://www.zlib.net/
